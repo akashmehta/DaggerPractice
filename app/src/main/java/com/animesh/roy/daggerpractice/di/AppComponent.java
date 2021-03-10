@@ -3,7 +3,7 @@ package com.animesh.roy.daggerpractice.di;
 import android.app.Application;
 
 import com.animesh.roy.daggerpractice.BaseApplication;
-import com.animesh.roy.daggerpractice.di.auth.AuthViewModelsModule;
+import com.animesh.roy.daggerpractice.di.users.UserItemsViewModelModule;
 
 import javax.inject.Singleton;
 
@@ -19,7 +19,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
                 ActivityBuilderModule.class,
                 AppModule.class,
                 ViewModelFactoryModule.class,
-                AuthViewModelsModule.class
+                RetrofitModule.class,
+                UserItemsViewModelModule.class
         }
 )
 public interface AppComponent extends AndroidInjector<BaseApplication> {

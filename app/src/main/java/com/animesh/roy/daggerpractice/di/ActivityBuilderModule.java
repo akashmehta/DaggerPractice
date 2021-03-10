@@ -1,7 +1,6 @@
 package com.animesh.roy.daggerpractice.di;
 
-import com.animesh.roy.daggerpractice.di.auth.AuthViewModelsModule;
-import com.animesh.roy.daggerpractice.ui.auth.AuthActivity;
+import com.animesh.roy.daggerpractice.ui.useritems.UserItemsActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -10,7 +9,5 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class ActivityBuilderModule {
 
     @ContributesAndroidInjector
-    abstract AuthActivity contributeAuthActivity();
-
-
+    abstract UserItemsActivity contributeUserItemsActivity();
 }

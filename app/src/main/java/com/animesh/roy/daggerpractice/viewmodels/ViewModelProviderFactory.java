@@ -9,10 +9,10 @@ import javax.inject.Singleton;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.jetbrains.annotations.NotNull;
+
 @Singleton
 public class ViewModelProviderFactory implements ViewModelProvider.Factory {
-
-    private static final String TAG = "ViewModelProviderFactor";
 
     private final Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;
 
@@ -21,8 +21,9 @@ public class ViewModelProviderFactory implements ViewModelProvider.Factory {
         this.creators = creators;
     }
 
+    @NotNull
     @Override
-    public <T extends ViewModel> T create(Class<T> modelClass) {
+    public <T extends ViewModel> T create(@NotNull  Class<T> modelClass) {
         Provider<? extends ViewModel> creator = creators.get(modelClass);
         if (creator == null) {
             for (Map.Entry<Class<? extends ViewModel>, Provider<ViewModel>> entry : creators.entrySet()) {

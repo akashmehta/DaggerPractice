@@ -1,4 +1,4 @@
-package com.aakash.androidmadsampleproject.usermodule.ui
+package com.animesh.roy.daggerpractice.ui.useritems
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.animesh.roy.daggerpractice.R
-import com.animesh.roy.daggerpractice.ui.useritems.UserItemResponse
 
 class UserItemsListAdapter(private val itemList: ArrayList<UserItemResponse>) :
     RecyclerView.Adapter<UserItemsListAdapter.ViewHolder>() {

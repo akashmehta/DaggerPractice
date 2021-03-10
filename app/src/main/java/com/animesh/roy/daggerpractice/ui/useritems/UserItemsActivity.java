@@ -2,19 +2,13 @@ package com.animesh.roy.daggerpractice.ui.useritems;
 
 import android.os.Bundle;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aakash.androidmadsampleproject.usermodule.ui.UserItemsListAdapter;
 import com.animesh.roy.daggerpractice.BaseApplication;
 import com.animesh.roy.daggerpractice.R;
-import com.animesh.roy.daggerpractice.apiintegration.ApiEndPoint;
-import com.animesh.roy.daggerpractice.apiintegration.CommonApiUiModel;
 import com.animesh.roy.daggerpractice.viewmodels.ViewModelProviderFactory;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -32,20 +26,17 @@ public class UserItemsActivity extends DaggerAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_items);
         ( (BaseApplication) getApplication()).appComponent.inject(this);
-        userViewModel = ViewModelProviders.of(this, viewModelProviderFactory).get(UserItemsViewModel.class);
+        userViewModel = new ViewModelProvider(this, viewModelProviderFactory).get(UserItemsViewModel.class);
         setupApi();
     }
 
     private void setupApi() {
 
-        userViewModel.getLiveData().observe(this, new Observer<CommonApiUiModel<ArrayList<UserItemResponse>>>() {
-            @Override
-            public void onChanged(CommonApiUiModel<ArrayList<UserItemResponse>> arrayListCommonApiUiModel) {
-                if (arrayListCommonApiUiModel.getResponse() != null) {
-                    RecyclerView rvUserItem = findViewById(R.id.rvUserItems);
-                    rvUserItem.setLayoutManager(new LinearLayoutManager(UserItemsActivity.this));
-                    rvUserItem.setAdapter(new UserItemsListAdapter(arrayListCommonApiUiModel.getResponse()));
-                }
+        userViewModel.getLiveData().observe(this, arrayListCommonApiUiModel -> {
+            if (arrayListCommonApiUiModel.getResponse() != null) {
+                RecyclerView rvUserItem = findViewById(R.id.rvUserItems);
+                rvUserItem.setLayoutManager(new LinearLayoutManager(UserItemsActivity.this));
+                rvUserItem.setAdapter(new UserItemsListAdapter(arrayListCommonApiUiModel.getResponse()));
             }
         });
         userViewModel.fetchUsers();

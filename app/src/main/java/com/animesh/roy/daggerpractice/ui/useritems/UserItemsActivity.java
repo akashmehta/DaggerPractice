@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aakash.androidmadsampleproject.usermodule.ui.UserItemsListAdapter;
+import com.animesh.roy.daggerpractice.BaseApplication;
 import com.animesh.roy.daggerpractice.R;
 import com.animesh.roy.daggerpractice.apiintegration.ApiEndPoint;
 import com.animesh.roy.daggerpractice.apiintegration.CommonApiUiModel;
@@ -30,6 +31,7 @@ public class UserItemsActivity extends DaggerAppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_items);
+        ( (BaseApplication) getApplication()).appComponent.inject(this);
         userViewModel = ViewModelProviders.of(this, viewModelProviderFactory).get(UserItemsViewModel.class);
         setupApi();
     }

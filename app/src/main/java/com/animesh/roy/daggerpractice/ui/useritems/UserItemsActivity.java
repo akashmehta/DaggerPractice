@@ -24,9 +24,6 @@ public class UserItemsActivity extends DaggerAppCompatActivity {
     private UserItemsViewModel userViewModel;
 
     @Inject
-    ApiEndPoint apiEndPoint;
-
-    @Inject
     ViewModelProviderFactory viewModelProviderFactory;
 
     @Override
@@ -49,6 +46,6 @@ public class UserItemsActivity extends DaggerAppCompatActivity {
                 }
             }
         });
-        userViewModel.fetchUsers(apiEndPoint);
+        userViewModel.fetchUsers();
     }
 }

@@ -13,12 +13,15 @@ import javax.inject.Inject
 
 class UserItemsViewModel @Inject constructor() : ViewModel() {
 
+    @Inject
+    lateinit var apiService: ApiEndPoint
+
     private val compositeDisposable = CompositeDisposable()
     private val liveData = MutableLiveData<CommonApiUiModel<ArrayList<UserItemResponse>>>()
 
     fun getLiveData() = liveData
 
-    fun fetchUsers(apiService: ApiEndPoint) {
+    fun fetchUsers() {
         liveData.value = CommonApiUiModel(progress = true)
         val disposable = apiService.fetchUsers()
                 .subscribeOn(Schedulers.io())
